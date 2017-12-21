@@ -21,6 +21,7 @@ if( ! fs.existsSync(conf_file) ) {
     console.log('created config file - set your api key in '+conf_file);
     return;
 }
+console.log("started");
 // load the config file
 var nconf = require('nconf');
     nconf.file({file: conf_file});
@@ -28,7 +29,8 @@ var nconf = require('nconf');
 
 var hostname = nconf.get('hostname');
 var apikey = nconf.get('apikey');
-var identifier = nconf.get('identifier');
+var identifier = process.argv[2];
+console.log(identifier)
 
 var uri = hostname+"/api/messages";
 
@@ -52,7 +54,7 @@ const rl = readline.createInterface({
 });
 
 rl.on('line', (line) => {
-  //console.log(`Received: ${line.trim()}`);
+  console.log(`Received: ${line.trim()}`);
   var time = moment().format("YYYY-MM-DD HH:mm:ss");
   var datetime = moment().unix();
   var address;

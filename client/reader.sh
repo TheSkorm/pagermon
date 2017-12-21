@@ -16,10 +16,23 @@
 # -a POCSAG512 : set to the protocol you're decoding
 # -f alpha 	   : omit if you want non-alphanumeric pages
 # -t raw 	   : tells multimon that you're coming from rtl_fm's pipe
-# /dev/stdin   : the place where all the studs come from
+# ./ch0.out   : the place where all the studs come from
 ######################################################################
 # node reader.js : the cool thing that makes magic happen
 ######################################################################
-rtl_fm -d 0101 -E dc -F 0 -l 15 -A fast -f 148.5875M -s22050 - | 
-multimon-ng -q -b1 -c -a POCSAG512 -f alpha -t raw /dev/stdin | 
-node reader.js
+#rtl_fm -d 0101 -E dc -F 0 -l 15 -A fast -f 148.5875M -s22050 - | 
+#multimon-ng -q -b1 -c -a POCSAG512 -f alpha -t raw ./ch0.out | 
+#node reader.js
+cd /root/pagermon/client
+mkfifo ./ch0.out ./ch1.out ./ch2.out ./ch3.out ./ch4.out ./ch5.out
+multifm test.json pocsag_narrow.json &
+
+
+multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch0.out | node reader.js 148938000 &
+multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch1.out | node reader.js 148688000&
+multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch2.out | node reader.js 148637000&
+multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch3.out | node reader.js 148363000&
+multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch4.out | node reader.js 148414000&
+multimon-ng  -t raw -q  -p  -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch5.out | node reader.js 148562000&
+
+wait
