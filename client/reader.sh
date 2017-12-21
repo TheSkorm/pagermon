@@ -27,12 +27,15 @@ cd /root/pagermon/client
 mkfifo ./ch0.out ./ch1.out ./ch2.out ./ch3.out ./ch4.out ./ch5.out
 multifm test.json pocsag_narrow.json &
 
+cat ./ch0.out  > /dev/null &
+cat ./ch4.out  > /dev/null &
+cat ./ch5.out  > /dev/null &
 
-multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch0.out | node reader.js 148938000 &
+#multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch0.out | node reader.js 148938000 &
 multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch1.out | node reader.js 148688000&
 multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch2.out | node reader.js 148637000&
 multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch3.out | node reader.js 148363000&
-multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch4.out | node reader.js 148414000&
-multimon-ng  -t raw -q  -p  -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch5.out | node reader.js 148562000&
+#multimon-ng  -t raw -q  -p -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch4.out | node reader.js 148414000&
+#multimon-ng  -t raw -q  -p  -a POCSAG1200 -a POCSAG512  -a POCSAG2400 -f alpha ./ch5.out | node reader.js 148562000&
 
 wait

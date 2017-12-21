@@ -1,0 +1,37 @@
+{
+  "device" : {
+    "type" : "rtlsdr",
+    "dBGainLNA" : 48,
+    "deviceIndex": 0
+  },
+  "sampleRateHz" : 1411200,
+  "centerFreqHz" : 148600000,
+  "nrSampBufs" : 16,
+  "decimationFactor" : 64,
+  "channels" : [
+    {
+      "outFifo" : "./ch0.out",
+      "chanCenterFreq" : 148938000, "dBGain": 0
+    },
+    {
+      "outFifo" : "./ch1.out",
+      "chanCenterFreq" : 148688000, "dBGain": 0
+    },
+    {
+      "outFifo" : "./ch2.out",
+      "chanCenterFreq" : 148637000, "dBGain": 0
+    },
+    {
+      "outFifo" : "./ch3.out",
+      "chanCenterFreq" : 148363000, "dBGain": 0
+    },
+    {
+      "outFifo" : "./ch4.out",
+      "chanCenterFreq" : 148414000, "dBGain": 0
+    },
+    {
+      "outFifo" : "./ch5.out",
+      "chanCenterFreq" : 148562000, "dBGain": 0
+    }
+  ]
+}
